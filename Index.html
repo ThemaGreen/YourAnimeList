@@ -1,0 +1,1702 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenAI Builder | La Plata's Local AI Consultant</title>
+    <meta name="description" content="GreenAI Builder helps small businesses in La Plata, MD unlock the power of AI. Get intelligent automation, local expertise, and personalized support.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tan: #F4EDE4;
+            --sandy: #E7D8C3;
+            --emerald: #2C6E49;
+            --dandelion: #F5BE40;
+            --bronze: #CD853F;
+            --sienna: #5B3A29;
+            --black: #121212;
+            --white: #FFFFFF;
+            --accent: #FFD700;
+            --light-emerald: #3d8b5f;
+            --light-dandelion: #f8d46c;
+
+            --background: var(--tan);
+            --text: var(--sienna);
+            --muted: #6E665F;
+            --light-bg: #FAF7F3;
+            --card-bg: #FFFFFF;
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #1C1C1C;
+                --text: #EFEAE2;
+                --muted: #B3AFA9;
+                --light-bg: #2A2A2A;
+                --card-bg: #292524;
+                --shadow: 0 6px 24px rgba(0,0,0,0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--background);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--sienna);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--dandelion);
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--dandelion);
+            color: var(--black);
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--light-dandelion);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(245, 190, 64, 0.4);
+        }
+
+        .btn-large {
+            padding: 16px 42px;
+            font-size: 1.2rem;
+        }
+
+        .btn-emerald {
+            background: var(--emerald);
+            color: var(--white);
+        }
+
+        .btn-emerald:hover {
+            background: var(--light-emerald);
+            box-shadow: 0 6px 15px rgba(44, 110, 73, 0.4);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background: rgba(44, 110, 73, 0.1);
+            padding: 10px 0;
+            margin-bottom: 15px;
+        }
+
+        .top-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .top-nav li a {
+            text-decoration: none;
+            color: var(--emerald);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .top-nav li a:hover {
+            color: var(--dandelion);
+        }
+
+        .top-nav li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dandelion);
+            transition: width 0.3s ease;
+        }
+
+        .top-nav li a:hover:after {
+            width: 100%;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--emerald);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--dandelion);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--emerald);
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dandelion);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--sandy) 0%, var(--tan) 100%);
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtext {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--black);
+        }
+
+        .local-badge {
+            display: inline-block;
+            background: var(--dandelion);
+            color: var(--sienna);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            max-width: 600px;
+            z-index: 1;
+            opacity: 0.95;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--sienna) 100%);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--background);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--dandelion);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--dandelion);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--emerald);
+        }
+
+        /* Packages Section */
+        .packages {
+            background-color: var(--light-bg);
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .package-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            border: 2px solid var(--sandy);
+            transition: var(--transition);
+        }
+
+        .package-card:hover {
+            border-color: var(--dandelion);
+            transform: translateY(-5px);
+        }
+
+        .package-card.popular {
+            border: 2px solid var(--dandelion);
+            transform: scale(1.03);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dandelion);
+            color: var(--sienna);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .package-name {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--emerald);
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--sienna);
+            margin-bottom: 25px;
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            color: var(--muted);
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .package-features li {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--sandy);
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features li i {
+            color: var(--dandelion);
+            margin-right: 10px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--light-bg);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            color: var(--emerald);
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .builder-profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .builder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--dandelion);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sienna);
+            font-size: 5rem;
+            flex-shrink: 0;
+        }
+
+        .builder-info {
+            text-align: left;
+            max-width: 600px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(44, 110, 73, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-top: 30px;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--dandelion);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sienna);
+            font-weight: bold;
+        }
+
+        .client-name {
+            font-weight: 600;
+            color: var(--emerald);
+        }
+
+        .client-title {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--sienna) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta h2:after {
+            background: var(--dandelion);
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .btn-light {
+            background: var(--white);
+            color: var(--emerald);
+        }
+
+        .btn-light:hover {
+            background: var(--light-dandelion);
+            color: var(--sienna);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--sienna);
+            color: var(--white);
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            color: var(--dandelion);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dandelion);
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--sienna);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--sandy);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light-bg);
+            color: var(--text);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--emerald);
+            box-shadow: 0 0 0 3px rgba(44, 110, 73, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .chatbot-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--emerald);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: var(--transition);
+        }
+
+        .chatbot-btn:hover {
+            background: var(--light-emerald);
+            transform: scale(1.1);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 450px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .chatbot-window.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chat-header {
+            background: var(--emerald);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .bot-message {
+            background: rgba(44, 110, 73, 0.1);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background: var(--dandelion);
+            color: var(--sienna);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid var(--sandy);
+            background: var(--card-bg);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--sandy);
+            border-radius: 50px;
+            outline: none;
+            background: var(--light-bg);
+            color: var(--text);
+        }
+
+        .chat-input button {
+            background: var(--emerald);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 15px 15px;
+            background: var(--card-bg);
+        }
+
+        .quick-reply-btn {
+            background: var(--light-bg);
+            border: 1px solid var(--sandy);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text);
+        }
+
+        .quick-reply-btn:hover {
+            background: var(--dandelion);
+            color: var(--sienna);
+            border-color: var(--dandelion);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .hero-image {
+                position: relative;
+                width: 80%;
+                max-width: 100%;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin: 40px auto 0;
+                height: 300px;
+            }
+            
+            h1 {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .top-nav ul {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+            
+            .main-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .chatbot-window {
+                width: 90%;
+                right: 5%;
+                height: 70vh;
+            }
+
+            .hero {
+                padding-top: 220px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Service Pages */
+        .service-page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .service-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .service-content {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .service-feature {
+            padding: 20px;
+            border-left: 3px solid var(--dandelion);
+            background: rgba(245, 190, 64, 0.05);
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--emerald);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .service-benefits {
+            background: var(--light-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .benefit-list {
+            list-style: none;
+        }
+        
+        .benefit-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .benefit-list li i {
+            color: var(--dandelion);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .page {
+            display: none;
+            padding-top: 170px;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Contact Page */
+        .contact-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--emerald);
+            margin-bottom: 20px;
+        }
+        
+        .map-container {
+            height: 400px;
+            background: var(--sandy);
+            border-radius: var(--radius);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <!-- Top Navigation Links -->
+            <div class="top-nav">
+                <ul>
+                    <li><a href="#"><i class="fas fa-phone"></i> (240) 555-1234</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> info@greenai-builder.com</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> La Plata, MD</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-check"></i> Schedule Consultation</a></li>
+                </ul>
+            </div>
+            
+            <!-- Main Navigation -->
+            <div class="main-nav">
+                <a href="#home" class="logo nav-link" data-page="home"><span>Green</span>AI Builder</a>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
+                        <li><a href="#packages" class="nav-link" data-page="packages">Packages</a></li>
+                        <li><a href="#about" class="nav-link" data-page="home">About</a></li>
+                        <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+                        <li><a href="#payment" class="btn btn-emerald nav-link" data-page="payment">Get Started</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>AI That Works for La Plata Businesses</h1>
+                    <p class="hero-subtext">Smart, affordable AI solutions built by a local consultant who understands your needs. Hello from Thema Green 👋</p>
+                    <a href="#services" class="btn btn-large nav-link" data-page="services">Explore Our AI Services</a>
+                    
+                    <div class="local-badge">
+                        <i class="fas fa-map-marker-alt"></i> Proudly serving La Plata, MD and surrounding areas
+                    </div>
+                    
+                    <div class="stats-container" style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 50px 0;">
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Local Businesses Empowered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24h</div>
+                            <div class="stat-label">Average Setup Time</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Satisfaction Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Preview -->
+        <section class="features">
+            <div class="container">
+                <div class="section-intro" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                    <h2>Our AI Integration Services</h2>
+                    <p>We specialize in creating custom AI solutions for businesses in La Plata, MD. From websites to operations, we'll integrate AI where you need it most.</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI Chatbots</h3>
+                        <p>Handle FAQs, bookings, and support 24/7 with an intelligent assistant on your website.</p>
+                        <a href="#website-ai" class="btn btn-emerald service-link" data-service="website-ai">Learn More</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Smart Data Insights</h3>
+                        <p>Use your business data to forecast trends and make smarter decisions.</p>
+                        <a href="#business-intelligence-ai" class="btn btn-emerald service-link" data-service="business-intelligence-ai">Learn More</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>E-Commerce Boosts</h3>
+                        <p>Increase sales with AI-powered recommendations and automation.</p>
+                        <a href="#ecommerce-ai" class="btn btn-emerald service-link" data-service="ecommerce-ai">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <h2>Meet the Builder</h2>
+                <div class="builder-profile">
+                    <div class="builder-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="builder-info">
+                        <p>Hi, I'm Thema Green — a one-woman AI and automation consultant right here in La Plata, MD. I created GreenAI Builder to help small businesses thrive using powerful tools usually reserved for big companies.</p>
+                        <p>Whether you run a local store, offer services, or manage clients — I'll work with you one-on-one to introduce the right AI solutions without overwhelming tech. This business is local, woman-owned, and built to make your operations easier, faster, and more modern. Let's grow your business together.</p>
+                        <div style="margin-top: 20px;">
+                            <a href="#contact" class="btn nav-link" data-page="contact">Contact Thema</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-intro" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                    <h2>La Plata Business Success Stories</h2>
+                    <p>Hear from local businesses that transformed with AI.</p>
+                </div>
+                
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"GreenAI Builder implemented a chatbot for our restaurant that handles 80% of reservations and inquiries. Our staff can now focus on customer experience!"</p>
+                            <div class="client-info">
+                                <div class="client-avatar">CR</div>
+                                <div>
+                                    <div class="client-name">Carlos Rodriguez</div>
+                                    <div class="client-title">Owner, La Plata Bistro</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The inventory forecasting AI has saved our retail store thousands in reduced waste and optimized stock levels. A game-changer for our business!"</p>
+                            <div class="client-info">
+                                <div class="client-avatar">MP</div>
+                                <div>
+                                    <div class="client-name">Michelle Peterson</div>
+                                    <div class="client-title">Manager, Charles County Retail</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"As a local service provider, the AI scheduling system has reduced no-shows by 40% and optimized our technician routes. Highly recommended!"</p>
+                            <div class="client-info">
+                                <div class="client-avatar">ET</div>
+                                <div>
+                                    <div class="client-name">Eric Thompson</div>
+                                    <div class="client-title">Owner, Thompson Home Services</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Transform Your Business with AI?</h2>
+                <p>Join dozens of La Plata businesses that have already implemented AI solutions.</p>
+                <a href="#payment" class="btn btn-light btn-large nav-link" data-page="payment">Get Started Today</a>
+            </div>
+        </section>
+    </section>
+
+    <!-- Services Page -->
+    <section id="services" class="page">
+        <div class="container">
+            <div class="section-intro" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                <h2>Our AI Integration Services</h2>
+                <p>We specialize in creating custom AI solutions for businesses in La Plata, MD. From websites to operations, we'll integrate AI where you need it most.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Chatbots</h3>
+                    <p>Handle FAQs, bookings, and support 24/7 with an intelligent assistant on your website.</p>
+                    <a href="#website-ai" class="btn btn-emerald service-link" data-service="website-ai">Learn More</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Smart Data Insights</h3>
+                    <p>Use your business data to forecast trends and make smarter decisions.</p>
+                    <a href="#business-intelligence-ai" class="btn btn-emerald service-link" data-service="business-intelligence-ai">Learn More</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>E-Commerce Boosts</h3>
+                    <p>Increase sales with AI-powered recommendations and automation.</p>
+                    <a href="#ecommerce-ai" class="btn btn-emerald service-link" data-service="ecommerce-ai">Learn More</a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Customer Service AI</h3>
+                    <p>Implement 24/7 chatbots, sentiment analysis, and automated support ticket routing.</p>
+                    <a href="#customer-service-ai" class="btn btn-emerald service-link" data-service="customer-service-ai">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Page -->
+    <section id="packages" class="page">
+        <div class="container">
+            <div class="section-intro" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                <h2>AI Implementation Packages</h2>
+                <p>Choose the package that best fits your business needs and budget.</p>
+            </div>
+            
+            <div class="package-grid">
+                <div class="package-card">
+                    <h3 class="package-name">Starter AI</h3>
+                    <div class="package-price">$499</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Basic AI Chatbot Implementation</li>
+                        <li><i class="fas fa-check"></i> Website AI Analysis</li>
+                        <li><i class="fas fa-check"></i> 1 Custom AI Feature</li>
+                        <li><i class="fas fa-check"></i> 2 Training Sessions</li>
+                        <li><i class="fas fa-check"></i> 30 Days Support</li>
+                    </ul>
+                    <a href="#payment" class="btn nav-link" data-page="payment">Get Started</a>
+                </div>
+                
+                <div class="package-card popular">
+                    <div class="popular-tag">MOST POPULAR</div>
+                    <h3 class="package-name">Business AI</h3>
+                    <div class="package-price">$1,199</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Advanced AI Integration</li>
+                        <li><i class="fas fa-check"></i> Custom Chatbot Development</li>
+                        <li><i class="fas fa-check"></i> 3 AI Features of Choice</li>
+                        <li><i class="fas fa-check"></i> Data Analysis Setup</li>
+                        <li><i class="fas fa-check"></i> 4 Training Sessions</li>
+                        <li><i class="fas fa-check"></i> 90 Days Support</li>
+                    </ul>
+                    <a href="#payment" class="btn nav-link" data-page="payment">Get Started</a>
+                </div>
+                
+                <div class="package-card">
+                    <h3 class="package-name">Enterprise AI</h3>
+                    <div class="package-price">$2,499</div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Complete AI Transformation</li>
+                        <li><i class="fas fa-check"></i> Custom AI Solution Design</li>
+                        <li><i class="fas fa-check"></i> Unlimited AI Features</li>
+                        <li><i class="fas fa-check"></i> Business Process Automation</li>
+                        <li><i class="fas fa-check"></i> 8 Training Sessions</li>
+                        <li><i class="fas fa-check"></i> 6 Months Support</li>
+                    </ul>
+                    <a href="#payment" class="btn nav-link" data-page="payment">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Page -->
+    <section id="payment" class="page">
+        <div class="container">
+            <div class="section-intro" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                <h2>Get Started with AI</h2>
+                <p>Complete this form and we'll contact you to discuss your AI implementation.</p>
+            </div>
+            
+            <div class="payment-container" style="max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                <form id="paymentForm" action="https://formspree.io/f/xdoqnvve" method="POST">
+                    <div class="form-group">
+                        <label for="packageSelect">Choose AI Package</label>
+                        <select id="packageSelect" name="package" required>
+                            <option value="">Select a package</option>
+                            <option value="starter">Starter AI - $499</option>
+                            <option value="business">Business AI - $1,199</option>
+                            <option value="enterprise">Enterprise AI - $2,499</option>
+                            <option value="custom">Custom Solution</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="business">Business Name</label>
+                            <input type="text" id="business" name="business" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="aiNeeds">What AI solutions are you interested in?</label>
+                        <textarea id="aiNeeds" name="ai_needs" placeholder="e.g., Website chatbot, inventory forecasting, customer service automation..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-large btn-emerald">Request AI Consultation</button>
+                    
+                    <div class="success-message" id="successMessage" style="background-color: var(--emerald); color: white; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center; display: none;">
+                        <i class="fas fa-check-circle"></i> Thank you! We'll contact you within 24 hours to discuss your AI implementation.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+        <div class="contact-page">
+            <div class="container">
+                <div class="section-intro" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                    <h2>Contact Our La Plata Team</h2>
+                    <p>Have questions about AI implementation? Reach out to our local experts.</p>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Visit Our Office</h3>
+                        <p>123 Main Street<br>La Plata, MD 20646</p>
+                        <p>Open Mon-Fri: 9AM-5PM</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Call Us</h3>
+                        <p>(240) 555-1234</p>
+                        <p>Emergency support: (240) 555-5678</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>info@greenai-builder.com</p>
+                        <p>support@greenai-builder.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-name">Full Name</label>
+                                <input type="text" id="contact-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email Address</label>
+                                <input type="email" id="contact-email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-subject">Subject</label>
+                            <input type="text" id="contact-subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-emerald btn-large">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="map-container">
+                    La Plata, MD Location Map
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GreenAI Builder</h3>
+                    <p>Bringing AI solutions to La Plata businesses since 2020.</p>
+                    <div class="social-links" style="margin-top: 20px; display: flex; gap: 15px;">
+                        <a href="#" style="color: var(--dandelion); font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: var(--dandelion); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: var(--dandelion); font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#services" class="nav-link" data-page="services">Services</a></li>
+                        <li><a href="#packages" class="nav-link" data-page="packages">Packages</a></li>
+                        <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@greenai-builder.com</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+12405551234">(240) 555-1234</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> La Plata, MD 20646</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 GreenAI Builder. All rights reserved. | Proudly serving La Plata, MD | Woman-Owned Business
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-btn" id="chatbotBtn">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chat-header">
+                <h3>AI Assistant</h3>
+                <button class="close-chat" id="closeChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    Hi there! 👋 I'm your AI assistant from GreenAI Builder. How can I help you today?
+                </div>
+            </div>
+            <div class="quick-replies" id="quickReplies">
+                <button class="quick-reply-btn" data-reply="website">Add AI to my website</button>
+                <button class="quick-reply-btn" data-reply="ecommerce">E-Commerce AI</button>
+                <button class="quick-reply-btn" data-reply="pricing">Pricing info</button>
+                <button class="quick-reply-btn" data-reply="contact">Contact support</button>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your question...">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const serviceLinks = document.querySelectorAll('.service-link');
+        
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+                if(page.id === pageId) {
+                    page.classList.add('active');
+                    window.scrollTo(0, 0);
+                }
+            });
+        }
+        
+        // Navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        // Service links
+        serviceLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const serviceId = this.getAttribute('data-service');
+                showPage(serviceId);
+            });
+        });
+        
+        // Chatbot Functionality
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChat = document.getElementById('closeChat');
+        const sendMessageBtn = document.getElementById('sendMessage');
+        const userInput = document.getElementById('userInput');
+        const chatMessages = document.getElementById('chatMessages');
+        const quickReplies = document.getElementById('quickReplies');
+        
+        chatbotBtn.addEventListener('click', () => {
+            chatbotWindow.classList.add('active');
+        });
+        
+        closeChat.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+        });
+        
+        // Quick reply buttons
+        document.querySelectorAll('.quick-reply-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const reply = button.getAttribute('data-reply');
+                let message = "";
+                
+                switch(reply) {
+                    case 'website':
+                        message = "How can I add AI to my website?";
+                        break;
+                    case 'ecommerce':
+                        message = "Tell me about e-commerce AI solutions";
+                        break;
+                    case 'pricing':
+                        message = "What are your pricing options?";
+                        break;
+                    case 'contact':
+                        message = "I need to contact support";
+                        break;
+                    default:
+                        message = button.textContent;
+                }
+                
+                userInput.value = message;
+                sendMessage();
+            });
+        });
+        
+        sendMessageBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                // Add user message
+                addMessage(message, 'user');
+                userInput.value = '';
+                
+                // Simulate AI response after delay
+                setTimeout(() => {
+                    const botResponse = getBotResponse(message);
+                    addMessage(botResponse, 'bot');
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        }
+        
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function getBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                return "Hello! I'm the GreenAI Builder assistant. How can I help you with your AI implementation today?";
+            } else if (lowerMessage.includes('website') || lowerMessage.includes('site')) {
+                return "We can add various AI features to your website: smart chatbots, personalized content recommendations, automated customer support, and more. Would you like me to connect you with our web AI specialist?";
+            } else if (lowerMessage.includes('ecommerce') || lowerMessage.includes('shop')) {
+                return "For e-commerce, we implement product recommendation engines, inventory forecasting AI, customer behavior analysis, and automated marketing. Our solutions help La Plata businesses increase sales by 20-35% on average.";
+            } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
+                return "We offer three main packages: Starter AI at $499, Business AI at $1,199, and Enterprise AI at $2,499. All packages include consultation, implementation, and training. You can see details on our Packages page.";
+            } else if (lowerMessage.includes('contact') || lowerMessage.includes('support')) {
+                return "You can reach our La Plata team at (240) 555-1234 or info@greenai-builder.com. Our office hours are Mon-Fri, 9AM-5PM. Would you like me to schedule a callback?";
+            } else if (lowerMessage.includes('service') || lowerMessage.includes('offer')) {
+                return "We specialize in custom AI solutions for La Plata businesses. Our services include website AI integration, e-commerce intelligence, customer service automation, and business process optimization. How can we help your business?";
+            } else if (lowerMessage.includes('local') || lowerMessage.includes('la plata')) {
+                return "As a La Plata-based company, we focus on serving businesses in Charles County. We offer on-site consultations and local support to ensure your AI implementation is perfectly tailored to our community's business environment.";
+            } else {
+                return "I'm here to help with your AI implementation needs! For specific questions about our services, packages, or how AI can benefit your La Plata business, feel free to ask.";
+            }
+        }
+        
+        // Form Submission
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const package = document.getElementById('packageSelect').value;
+            
+            if (name && email && package) {
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // In a real implementation, this would submit the form
+                // For demo purposes, we'll just show the success message
+                setTimeout(() => {
+                    document.getElementById('paymentForm').reset();
+                    document.getElementById('successMessage').scrollIntoView({behavior: 'smooth'});
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
